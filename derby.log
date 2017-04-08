@@ -1,1 +1,4 @@
-Sat Apr 08 13:44:38 EDT 2017 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+Sat Apr 08 14:12:20 EDT 2017 Thread[main,5,main] Class org.apache.derby.jdbc.Driver42 java.lang.ClassNotFoundException: org.apache.derby.jdbc.Driver42, module ignored.
+----------------------------------------------------------------
+Sat Apr 08 14:12:20 EDT 2017: Shutting down Derby engine
+----------------------------------------------------------------
