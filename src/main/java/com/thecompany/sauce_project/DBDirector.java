@@ -15,42 +15,42 @@ public class DBDirector {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "org.apache.derby.jdbc.ClientDriver";
-    static final String DB_URL = "jdbc:derby://localhost:1527/Sauce";
+    static final String DB_URL = "jdbc:derby://localhost:1527/Project Database";
 
     // Database credentials
-    static final String USER = "sample";
-    static final String PASS = "sample";
+    static final String USER = "";
+    static final String PASS = "";
 
     private static Connection conn = null;
     private static Statement stmt = null;
 
     //Table Names
     private static String sauce = "SAUCE";
-    private static String user = "USER";
+    private static String user = "USERS";
 
     public static void main(String[] args) {
         connect();
-        insertSauce("The Best Sauce", 10000, null);
-        insertUser("gardneca195@gmail.com", "Craig", "Gardner", "current timestamp", 0);
+        //insertSauce("The Best Sauce", 10000, null);
+        //insertUser("gardneca195@gmail.com", "Craig", "Gardner", "current timestamp", 0);
         select(sauce);
         select(user);
         disConnect();
     }
 
-    public static void connect() {
+    private static void connect() {
         try {
             //Step 2: Register JDBC Driver
             Class.forName(JDBC_DRIVER);
 
             //Step 3: Open a connection
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(DB_URL, null, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void disConnect() {
+    private static void disConnect() {
         try {
             if (stmt != null) {
                 stmt.close();
@@ -74,12 +74,12 @@ public class DBDirector {
 
             // QUERY GOES IN SIMPLE STRING
             String sql;
-            sql = "SELECT * from " + table + "\"";
+            sql = "SELECT * from " + table;
 
             //  RESULT SET IS WHERE YOU PUT YOUR QUERY
             ResultSet rs = stmt.executeQuery(sql);
 
-            if (table.equals("user")) {
+            if (table.equals("SAUCE")) {
                 //Step 5: Extract data from result set
                 while (rs.next()) {
                     String TITLE = rs.getString("TITLE");
@@ -90,10 +90,11 @@ public class DBDirector {
                     System.out.println("Title: " + TITLE);
                     System.out.println("Scoville Rating: " + SCOVILLE_RATING);
                     System.out.println("Blob: " + b);
+                    System.out.println();
                 }
-            }else if(table.equals("sauce")){
+            }else if(table.equals("USERS")){
                 while (rs.next()) {
-                    String email = rs.getString("Email");
+                    String email = rs.getString("EMAIL");
                     String firstName = rs.getString("First_name");
                     String lastName = rs.getString("last_Name");
                     String userSince = rs.getString("User_Since");
@@ -105,6 +106,7 @@ public class DBDirector {
                     System.out.println("Last Name: " + lastName);
                     System.out.println("User Since: " +userSince);
                     System.out.println("Rating Count: " + ratingCount);
+                    System.out.println();
                 }
             }
 
