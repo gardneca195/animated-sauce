@@ -30,8 +30,8 @@ public class DBDirector {
 
     public static void main(String[] args) {
         connect();
-        //insertSauce("The Best Sauce", 10000, null);
-        //insertUser("gardneca195@gmail.com", "Craig", "Gardner", "current timestamp", 0);
+        insertSauce("Tapitio", 10000, null);
+        insertUser("jhiggz60@gmail.com", "Jon", "Higgins", "current timestamp", 0);
         select(sauce);
         select(user);
         disConnect();
